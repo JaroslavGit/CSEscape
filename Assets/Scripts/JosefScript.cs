@@ -7,8 +7,8 @@ using UnityEngine;
 public class JosefScript : MonoBehaviour
 {
     [SerializeField]
-    public float speed = 3.0f;
-    public float jump = 1.0f;
+    public float speed = 7.0f;
+    public float jump = 5.0f;
     private float moveH;
     private float moveV;
 
@@ -46,20 +46,30 @@ public class JosefScript : MonoBehaviour
     {
         if (!isJumping)
         {
-            Jump();
+            //Jump();
         }
     }
 
-    void Jump()
+    /*
+     * void Jump()
     {
      moveV = Input.GetAxisRaw("Vertical");
-     rig.AddForce(new Vector2(0f, moveV)*jump, ForceMode2D.Impulse);
+     //rig.AddForce(new Vector2(0f, moveV)*jump, ForceMode2D.Impulse);
+     rig.velocity = new Vector2(rig.velocity.x, jump);
     }
+    */
 
     private void Move()
     {
         moveH = Input.GetAxisRaw("Horizontal");
-        transform.position += new Vector3(moveH, 0f, 0f) * speed * Time.deltaTime;
+
+        //transform.position += new Vector3(moveH, 0f, 0f) * speed * Time.deltaTime;
+
+        rig.velocity = new Vector2(moveH * speed, rig.velocity.y);
+        if (Input.GetAxisRaw("Vertical") > 0)
+        {
+            rig.velocity = new Vector2(rig.velocity.x, jump);
+        }
         if (moveH > 0f)
         {
             anim.SetBool("isRunning", true);
