@@ -20,7 +20,6 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
@@ -64,7 +63,6 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -3048,10 +3046,10 @@ TextureImporter:
       TX Village Props_44: 219003960
       TX Village Props_73: -809016590
       TX Village Props_118: 190145198
-      TX Village Props_64: 1106530341
-      TX Village Props_79: 1647927188
-      TX Village Props_13: -1764969570
       TX Village Props_109: 1750401448
+      TX Village Props_79: 1647927188
+      TX Village Props_64: 1106530341
+      TX Village Props_13: -1764969570
       TX Village Props_131: -1280978576
       TX Village Props_14: 597033560
       TX Village Props_94: -1279122155
@@ -3111,6 +3109,7 @@ TextureImporter:
       TX Village Props_134: -60463015
   spritePackingTag: 
   pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
