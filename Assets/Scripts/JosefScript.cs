@@ -3,14 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class JosefScript : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 7.0f;
-    [SerializeField]
-    private float jump = 8.0f;
+    public float speed = 7.0f;
+    public float jump = 5.0f;
     private float moveH;
     private float moveV;
 
@@ -18,12 +16,6 @@ public class JosefScript : MonoBehaviour
     public Animator anim;
     public SpriteRenderer srender;
     public Rigidbody2D rig;
-
-    public LayerMask groundLay;  //vrstva, která detekuje skok
-
-    public int bagsCounter;
-    //UI
-    public Text uiText; 
     // Start is called before the first frame update
     void Start()
     {
@@ -52,23 +44,18 @@ public class JosefScript : MonoBehaviour
     }
     private void FixedUpdate()
     {
-     if(IsGrounded())
+        if (!isJumping)
         {
             Jump();
         }
     }
 
-    bool IsGrounded()
-    {   //vyšlu paprsek na zem
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(this.transform.position.x,this.transform.position.y), Vector2.down, 0.9f, groundLay);
-        return hit.collider != null;
-    }
-
-    void Jump()
-    {
-     moveV = Input.GetAxisRaw("Vertical");
-     rig.AddForce(new Vector2(0f, moveV)*jump, ForceMode2D.Impulse);
-    }
+    
+      void Jump()
+      {
+       moveV = Input.GetAxisRaw("Vertical");
+       rig.AddForce(new Vector2(0f, moveV)*jump, ForceMode2D.Impulse);
+      }
     
 
     private void Move()
@@ -76,8 +63,10 @@ public class JosefScript : MonoBehaviour
         moveH = Input.GetAxisRaw("Horizontal");
 
         transform.position += new Vector3(moveH, 0f, 0f) * speed * Time.deltaTime;
-
-       
+        if (Input.GetAxisRaw("Vertical") > 0)
+        {
+            rig.velocity = new Vector2(rig.velocity.x, jump);
+        }
         if (moveH > 0f)
         {
             anim.SetBool("isRunning", true);
@@ -98,15 +87,18 @@ public class JosefScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-     
-        //pick Bags
-        if (collision.gameObject.tag == "Bag")
+        if (collision.gameObject.tag == "Platform")
         {
-            bagsCounter++;
-            Destroy(collision.gameObject);
-            uiText.text = "Found Bags: " + bagsCounter + "/ 5";
-
-        }
+            isJumping = false;
+        }    
     }
 
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Platform")
+        {
+            isJumping = true;
+        }
+
+    }
 }
