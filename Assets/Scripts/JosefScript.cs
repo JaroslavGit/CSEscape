@@ -20,6 +20,7 @@ public class JosefScript : MonoBehaviour
 
     private int bagsCount;
     public Text bagsText;
+    [SerializeField] private AudioSource bagCollect;
 
     public LayerMask layer;
     [SerializeField]
@@ -100,6 +101,7 @@ public class JosefScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bag")
         {
+            bagCollect.Play();
             Destroy(collision.gameObject);
             bagsCount++;
             bagsText.text = bagsCount + " / 5";
