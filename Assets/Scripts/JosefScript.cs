@@ -106,5 +106,19 @@ public class JosefScript : MonoBehaviour
             bagsCount++;
             bagsText.text = bagsCount + " / 5";
         }
+
+        if (bagsCount == 5)
+        {
+            
+          GameObject[]  go = GameObject.FindGameObjectsWithTag("Straw");
+          for(int i = 0; i< go.Length; i++)
+            {
+                Destroy(go[i]);
+            }
+        }
+        else
+        {
+
+        }
     }
 }
