@@ -9,7 +9,7 @@ public class JosefScript : MonoBehaviour
 {
     [SerializeField]
     public float speed = 7.0f;
-    public float jump = 8.0f;
+    public float jump = 5.0f;
     private float moveH;
     private float moveV;
 
