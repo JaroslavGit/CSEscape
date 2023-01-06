@@ -14,6 +14,7 @@ public class JosefScript : MonoBehaviour
     private float moveV;
 
     public GameObject teleporter;
+    public GameObject teleporterZpet;
 
     public bool isJumping;
     public Animator anim;
@@ -22,6 +23,7 @@ public class JosefScript : MonoBehaviour
 
     private int bagsCount;
     public Text bagsText;
+    public Text Medailon;
     [SerializeField] private AudioSource bagCollect;
 
     public LayerMask layer;
@@ -110,7 +112,8 @@ public class JosefScript : MonoBehaviour
         }
 
         if (collision.gameObject.tag == "Cedula") {
-            Instantiate(teleporter, new Vector3(-18, 3 , 0), Quaternion.identity);
+            Instantiate(teleporter, new Vector3(-18, 3, 0), Quaternion.identity);
+            //collision.gameObject.tag == "";
             
         }
 
@@ -118,22 +121,17 @@ public class JosefScript : MonoBehaviour
             transform.position = new Vector3(12, 0, 0);
         }
 
-
-
-
-
-
-
-        /*if (collision.gameObject.tag == "Medailon") //SKRIPTOS PRO MEDAILONOS
+        if(collision.gameObject.tag == "Medailon") //SKRIPTOS PRO MEDAILONOS
         {
-            Instantiate(teleporter, new Vector3(-18, 3, 0), Quaternion.identity);
-
+            Instantiate(teleporterZpet, new Vector3(4, 0, 0), Quaternion.identity);
+            Destroy(collision.gameObject);
+            Medailon.text = "1 / 1";
         }
 
-        if (collision.gameObject.tag == "Teleporter1")
+        if (collision.gameObject.tag == "TeleporterZpet")
         {
-            transform.position = new Vector3(12, 0, 0);
-        }*/
+            transform.position = new Vector3(-29, 0, 0);
+        }
     }
 
     

@@ -7,6 +7,10 @@ TagManager:
   - Platform
   - Ladder
   - Bag
+  - Cedula
+  - Teleporter
+  - Medailon
+  - TeleporterZpet
   layers:
   - Default
   - TransparentFX
