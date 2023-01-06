@@ -13,6 +13,8 @@ public class JosefScript : MonoBehaviour
     private float moveH;
     private float moveV;
 
+    public GameObject teleporter;
+
     public bool isJumping;
     public Animator anim;
     public SpriteRenderer srender;
@@ -106,5 +108,34 @@ public class JosefScript : MonoBehaviour
             bagsCount++;
             bagsText.text = bagsCount + " / 5";
         }
+
+        if (collision.gameObject.tag == "Cedula") {
+            Instantiate(teleporter, new Vector3(-18, 3 , 0), Quaternion.identity);
+            
+        }
+
+        if (collision.gameObject.tag == "Teleporter") {
+            transform.position = new Vector3(12, 0, 0);
+        }
+
+
+
+
+
+
+
+        /*if (collision.gameObject.tag == "Medailon") //SKRIPTOS PRO MEDAILONOS
+        {
+            Instantiate(teleporter, new Vector3(-18, 3, 0), Quaternion.identity);
+
+        }
+
+        if (collision.gameObject.tag == "Teleporter1")
+        {
+            transform.position = new Vector3(12, 0, 0);
+        }*/
     }
+
+    
+
 }
